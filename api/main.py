@@ -15,7 +15,7 @@ def index():
     # 檢測用戶訪問設備，這裡簡單地假設是桌面電腦
     agent = request.headers.get('User-Agent')
     if any(device in agent.lower() for device in ('iphone', 'android', 'blackberry')):
-            return render_template('index_mobile.html', button_audio_mapping=button_audio_mapping)
+        return render_template('index_mobile.html', button_audio_mapping=button_audio_mapping)
     else:
         return render_template('index_desktop.html', button_audio_mapping=button_audio_mapping)
 
