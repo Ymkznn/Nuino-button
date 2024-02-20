@@ -18,5 +18,6 @@ def index():
         return render_template('index_desktop.html', buttons=json_data['buttons'])'''
     return "hello"
 
-if __name__ == '__main__':
+'''if __name__ == '__main__':
     app.run(debug=True)
+'''
