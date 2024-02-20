@@ -7,15 +7,25 @@
     <link rel="stylesheet" href="desktop_styles.css">
 </head>
 <body>
-    <h1>Desktop Interface</h1>
+    <h1>Desktop</h1>
     
     <!-- 動態生成按鈕 -->
     <ul>
-        {% for button in buttons %}
-            <li><button>{{ button }}</button></li>
+        {% for button, audio_file in button_audio_mapping.items() %}
+            <li>
+                <button onclick="playAudio('static/'+'{{ audio_file }}')">{{ button }}</button>
+            </li>
         {% endfor %}
     </ul>
     
-    <!-- 其他內容 -->
+    <script>
+        function playAudio(audioFile) {
+            var audio = new Audio(audioFile);
+            audio.addEventListener('canplaythrough', function() {
+                // 加載完成後播放音頻
+                audio.play();
+            });
+        }
+    </script>
 </body>
 </html>

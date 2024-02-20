@@ -7,15 +7,23 @@
     <link rel="stylesheet" href="mobile_styles.css">
 </head>
 <body>
-    <h1>Mobile Interface</h1>
+    <h1>Mobile</h1>
     
     <!-- 動態生成按鈕 -->
     <ul>
-        {% for button in buttons %}
-            <li><button>{{ button }}</button></li>
+        {% for button, audio_file in button_audio_mapping.items() %}
+            <li>
+                <button onclick="playAudio('{{ audio_file }}')">{{ button }}</button>
+                <audio id="{{ button }}Audio" src="/{{ url_for('static', filename=audio_file) }}"></audio>
+            </li>
         {% endfor %}
     </ul>
     
-    <!-- 其他內容 -->
+    <script>
+        function playAudio(audioFile) {
+            var audio = new Audio(audioFile);
+            audio.play();
+        }
+    </script>
 </body>
 </html>
