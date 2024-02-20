@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 # 假設你的 JSON 數據
 json_data = {
-    "buttons": ["Button 1", "Button 2", "Button 3"]
+    "buttons": ["Button 1", "Button 2", "Button 3", "Button 4"]
 }
 
 # 路由，根據設備返回不同的 HTML 模板
