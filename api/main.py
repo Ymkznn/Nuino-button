@@ -11,11 +11,11 @@ json_data = {
 @app.route('/')
 def index():
     # 檢測用戶訪問設備，這裡簡單地假設是桌面電腦
-    agent = request.headers.get('User-Agent')
+    '''agent = request.headers.get('User-Agent')
     if any(device in agent.lower() for device in ('iphone', 'android', 'blackberry')):
             return render_template('index_mobile.html', buttons=json_data['buttons'])
     else:
-        return render_template('index_desktop.html', buttons=json_data['buttons'])
-
+        return render_template('index_desktop.html', buttons=json_data['buttons'])'''
+    return "hello"
 if __name__ == '__main__':
     app.run(host='192.168.8.130',debug=True)
