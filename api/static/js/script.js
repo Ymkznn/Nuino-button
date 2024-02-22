@@ -14,6 +14,7 @@ $(document).ready(function() {
     
         // 构建音频文件的 URL
         var audioFile = '/static/audios/' + audioFileName;
+        console.log(audioFile)
         // 如果自动暂停功能启用且有正在播放的音频，则暂停它
         if (autoPauseEnabled && currentAudio !== null) {
             currentAudio.pause();
