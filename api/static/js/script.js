@@ -13,7 +13,8 @@ $(document).ready(function() {
         var audioFileName = $(this).data('audio');
     
         // 构建音频文件的 URL
-        var audioFile = '/static/audios/' +encodeURIComponent(audioFileName);
+        var encodedFileName = encodeURIComponent(audioFileName);
+        var audioFile = '/static/audios/' + encodedFileName;
         console.log(audioFile)
         // 如果自动暂停功能启用且有正在播放的音频，则暂停它
         if (autoPauseEnabled && currentAudio !== null) {
