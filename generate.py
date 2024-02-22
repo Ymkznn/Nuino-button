@@ -39,6 +39,7 @@ with doc.body:
                         a("繁體中文", cls="dropdown-item lang-switch",data_lang="zh_TW", href="#")
                 with div(cls="offcanvas offcanvas-start text-bg-dark",
                             tabindex="_1",
+                            id="offcanvasNavbar",
                             aria_labelledby="SidebarLabel"):
                     with div(cls="offcanvas-header"):
                         with button(type="button",
