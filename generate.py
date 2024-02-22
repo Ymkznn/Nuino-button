@@ -56,7 +56,7 @@ with doc.body:
                             with li(cls="nav-item"):
                                 a("Youtube", cls="nav-link", href="https://www.youtube.com/channel/UCF4KiwafRPMgvnfipsk1JZg",target="-blank")
                             with li(cls="nav-item"):
-                                a("Twitter", cls="nav-link", href="https://twitter.com/Kohaku-Nuino",target="-blank")
+                                a("Twitter", cls="nav-link", href="https://twitter.com/Kohaku_Nuino",target="-blank")
                             with li(cls="nav-item"):
                                 a("UNiVIRTUAL", cls="nav-link", href="https://univirtual.jp/",target="-blank")
             
