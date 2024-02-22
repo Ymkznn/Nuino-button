@@ -15,7 +15,6 @@ $(document).ready(function() {
         // 构建音频文件的 URL
         var encodedFileName = encodeURIComponent(audioFileName);
         var audioFile = '/static/audios/' + encodedFileName;
-        console.log(audioFile)
         // 如果自动暂停功能启用且有正在播放的音频，则暂停它
         if (autoPauseEnabled && currentAudio !== null) {
             currentAudio.pause();
@@ -45,7 +44,7 @@ $(document).ready(function() {
 function updateToggleButton(lang,autoPauseEnabled) {
     var toggleButtonText;
     $.ajax({
-        url: `/get_texts_${lang}`,
+        url: `/${lang}`,
         method: 'GET',
         dataType: 'json',
         async: false, // 將 AJAX 請求設為同步
@@ -68,21 +67,14 @@ function updateToggleButton(lang,autoPauseEnabled) {
 function switchLanguage(lang) {
     $.when(
         $.ajax({
-            url: `/get_texts_${lang}`,
-            method: 'GET',
-            dataType: 'json'
-        }),
-        $.ajax({
-            url: `/get_${lang}`,
+            url: `/${lang}`,
             method: 'GET',
             dataType: 'json'
         })
-    ).done(function(textsData, dataData) {
-        var texts = textsData[0];
-        var data = dataData[0];
-        updateTexts(texts,lang);
-        updateData(data);
-        document.title = texts.title; // 更新标题
+    ).done(function(textsData) {
+        console.log(textsData)
+        updateTexts(textsData);
+        document.title = textsData.title; // 更新标题
     }).fail(function(error) {
         console.error('Error fetching language files:', error);
     });
@@ -90,21 +82,11 @@ function switchLanguage(lang) {
     $('html').attr('lang', lang); // 修改根元素的 lang 属性
 }
 
-function updateTexts(texts,lang) {
+function updateTexts(texts) {
     $.each(texts, function(categoryTag, data) {
-        $('#' + categoryTag).text(data);
-    });
-}
-
-function updateData(data) {
-    $.each(data, function(categoryTag, data) {
-        $.each(data, function(categoryName, data) {
-            $('#' + categoryTag).text(categoryName);
-            $.each(data, function(buttonTag, data) {
-                $.each(data, function(buttonText, url) {
-                    $('#' + categoryTag+(buttonTag+1)).text(buttonText.split('.')[0]);
-                });
-            });
-        });
+        if (data !=null){
+            console.log(categoryTag)
+            $('#' + categoryTag).text(data);
+        }
     });
 }

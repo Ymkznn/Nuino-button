@@ -5,7 +5,7 @@ import json
 doc = dominate.document(title="ぬいのボタン NUINO_BUTTON")
 with open("api/static/text/description.txt","r",encoding="utf_8") as file:
     description = file.read()
-with open("api/static/text/ja.json", "r", encoding="utf_8") as f:
+with open("api/static/text/data.json", "r", encoding="utf_8") as f:
     data = json.load(f)
 
 with doc:
@@ -39,7 +39,6 @@ with doc.body:
                         a("繁體中文", cls="dropdown-item lang-switch",data_lang="zh_TW", href="#")
                 with div(cls="offcanvas offcanvas-start text-bg-dark",
                             tabindex="_1",
-                            id="offcanvasNavbar",
                             aria_labelledby="SidebarLabel"):
                     with div(cls="offcanvas-header"):
                         with button(type="button",
@@ -62,17 +61,16 @@ with doc.body:
             
             
         with div(cls="container-fluid",id="container_area"):
-            for category_tag, categorys in data.items():
-                for category, buttons in categorys.items():
-                    with div(cls=category):
-                        with div(id='category_area'):
-                            with div(cls="col"):
-                                h3(category,id=category_tag, style="text-align: center;padding-bottom: 5px")
-                        with div(cls="row"):
-                            with div(cls="cate-body"):
-                                for button_tag,button_name in enumerate(buttons):
-                                    name,url = button_name.popitem()
-                                    button(name,id=category_tag+str(button_tag+1),type="button", cls="btn btn-primary play-audio",**{"data-audio":f"{name}.mp3"})
+            for category_tag,(category, buttons) in enumerate(data.items()):
+                with div():
+                    with div(id='category_area'):
+                        with div(cls="col"):
+                            h3(category,id=category, style="text-align: center;padding-bottom: 5px")
+                    with div(cls="row"):
+                        with div(cls="cate-body"):
+                            for button_tag,button_name in enumerate(buttons):
+                                name,url = button_name.popitem()
+                                button(name,id=name,**{"data-audio":"{}-{:03d}.mp3".format(category_tag+1,button_tag+1)},type="button", cls="btn btn-primary play-audio")
                                 
     with div(cls="container-fluid footer-custom", id="page-footer"): # 添加 id 属性
         with div(cls="row"):
