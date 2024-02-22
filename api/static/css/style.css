@@ -1,0 +1,28 @@
+#category_area {
+    background-color: #33ffee;
+    border-radius: 15px;
+}
+#container_area {
+    margin: 0;
+    padding-top: 70px;
+}
+#autopause_on {
+    margin-right: 10px;
+}
+#autopause_off {
+    margin-right: 10px;
+}
+html {
+    height: 100%;
+}
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.cate-body{
+    padding-bottom: 10px;
+}
+.main-app {
+    flex: 1;
+}
