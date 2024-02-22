@@ -71,7 +71,7 @@ with doc.body:
                         with div(cls="cate-body"):
                             for button_tag,button_name in enumerate(buttons):
                                 name,url = button_name.popitem()
-                                button(name,id=name,**{"data-audio":"{}-{:03d}.mp3".format(category_tag+1,button_tag+1)},type="button", cls="btn btn-primary play-audio")
+                                button(name,id=name,**{"data-audio":"{}-{:03d}.mp3".format(category_tag+1,button_tag+1)},type="button", cls="btn btn-primary play-audio",style="margin-bottom: 10px")
                                 
     with div(cls="container-fluid footer-custom", id="page-footer"): # 添加 id 属性
         with div(cls="row"):
