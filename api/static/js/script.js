@@ -9,18 +9,22 @@ $(document).ready(function() {
     });
     
     $(".play-audio").click(function(){
-        var audioFile = $(this).data('audio');
-
-        // 如果自動暫停功能啟用且有正在播放的音頻，則暫停它
+        // 获取音频文件的文件名
+        var audioFileName = $(this).data('audio');
+    
+        // 构建音频文件的 URL
+        var audioFile = '/static/audios/' + audioFileName;
+        console.log(audioFile)
+        // 如果自动暂停功能启用且有正在播放的音频，则暂停它
         if (autoPauseEnabled && currentAudio !== null) {
             currentAudio.pause();
         }
-
-        // 創建新的音頻元素並播放
+    
+        // 创建新的音频元素并播放
         var audio = new Audio(audioFile);
         audio.play();
-
-        // 將新的音頻設置為當前音頻
+    
+        // 将新的音频设置为当前音频
         currentAudio = audio;
     });
 
@@ -40,7 +44,8 @@ $(document).ready(function() {
 function updateToggleButton(lang,autoPauseEnabled) {
     var toggleButtonText;
     $.ajax({
-        url: `texts_${lang}.json`,
+        url: `/get_texts_${lang}`,
+        method: 'GET',
         dataType: 'json',
         async: false, // 將 AJAX 請求設為同步
         success: function(data) {
@@ -62,11 +67,13 @@ function updateToggleButton(lang,autoPauseEnabled) {
 function switchLanguage(lang) {
     $.when(
         $.ajax({
-            url: `texts_${lang}.json`,
+            url: `/get_texts_${lang}`,
+            method: 'GET',
             dataType: 'json'
         }),
         $.ajax({
-            url: `${lang}.json`,
+            url: `/get_${lang}`,
+            method: 'GET',
             dataType: 'json'
         })
     ).done(function(textsData, dataData) {

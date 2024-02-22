@@ -16,15 +16,15 @@ with doc.head:
     #meta(http_equiv="X_UA_Compatible",content="IE=edge")
     meta(name="description",content=description)
     meta(name="viewport",content="width=device_width,initial_scale=1")
-    link(rel="icon",href="/favicon.ico")
-    link(rel="stylesheet",href="style.css")
+    link(rel="shortcut icon", type="image/x-icon", href="{{ url_for('static', filename='favicon.ico') }}")
+    link(rel="stylesheet", type="text/css",href="{{ url_for('static', filename='css/style.css') }}")
     link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css")
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js")
     script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js")
 
 with doc.body:
-    script(src="audio_play.js")
+    script(type="text/javascript", src="{{ url_for('static', filename='js/script.js') }}")
     with div(cls="main-app"):
         with nav(cls="navbar navbar-dark bg-dark fixed-top"):
             with div(cls="container-fluid"):
