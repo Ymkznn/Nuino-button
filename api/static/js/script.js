@@ -72,7 +72,6 @@ function switchLanguage(lang) {
             dataType: 'json'
         })
     ).done(function(textsData) {
-        console.log(textsData)
         updateTexts(textsData);
         document.title = textsData.title; // 更新标题
     }).fail(function(error) {
@@ -85,7 +84,6 @@ function switchLanguage(lang) {
 function updateTexts(texts) {
     $.each(texts, function(categoryTag, data) {
         if (data !=null){
-            console.log(categoryTag)
             $('#' + categoryTag).text(data);
         }
     });
