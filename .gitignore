@@ -2,3 +2,5 @@
 api/static/text/description.txt
 add_json.py
 api/static/temp_audio
+auto.py
+__pycache__
