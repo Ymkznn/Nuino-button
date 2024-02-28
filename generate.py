@@ -28,7 +28,7 @@ def generate():
         script(type="text/javascript", src="{{ url_for('static', filename='js/script.js') }}")
         with div(cls="main-app"):
             with nav(cls="navbar navbar-dark bg-dark fixed-top"):
-                with div(cls="container-fluid"):
+                with div(cls="container-fluid",id="navbar_container"):
                     with button (cls="navbar-toggler", type="button", data_bs_toggle="offcanvas", data_bs_target="#offcanvasNavbar", aria_controls="offcanvasNavbar", aria_label="Toggle navigation"):
                         span (cls="navbar-toggler-icon")
                     a("ぬいのボタン", cls="navbar-brand",id="heading", href="#")
