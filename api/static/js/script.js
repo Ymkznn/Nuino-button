@@ -33,9 +33,9 @@ $(document).ready(function() {
         var lang = document.documentElement.lang
         msg = updateToggleButton(lang,autoPauseEnabled);
         if (autoPauseEnabled) {
-            $(this).text(msg).toggleClass("text-bg-dark text-bg-white").attr("id", "autopause_off");
+            $(this).attr("id", "autopause_off");
         } else {
-            $(this).text(msg).toggleClass("text-bg-dark text-bg-white").attr("id", "autopause_on");
+            $(this).attr("id", "autopause_on");
         }
         autoPauseEnabled = !autoPauseEnabled;
     });
