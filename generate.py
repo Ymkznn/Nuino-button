@@ -3,12 +3,11 @@ import dominate
 import json
 
 def generate():
-    doc = dominate.document(title="ぬいのボタン NUINO_BUTTON")
     with open("api/static/text/description.txt","r",encoding="utf_8") as file:
         description = file.read()
     with open("api/static/text/data.json", "r", encoding="utf_8") as f:
         data = json.load(f)
-
+    doc = dominate.document(title="ぬいのボタン NUINO_BUTTON")
     with doc:
         html(lang="ja")
 
@@ -16,7 +15,7 @@ def generate():
         meta(charset="utf_8")
         #meta(http_equiv="X_UA_Compatible",content="IE=edge")
         meta(name="description",content=description)
-        meta(name="viewport",content="width=device_width,initial_scale=1")
+        meta(name="viewport",content="width=device_width,initial_scale=1,maxium-scale=1,user-scalable=0")
         link(rel="shortcut icon", type="image/x-icon", href="{{ url_for('static', filename='favicon.ico') }}")
         link(rel="stylesheet", type="text/css",href="{{ url_for('static', filename='css/style.css') }}")
         link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css")
@@ -27,15 +26,15 @@ def generate():
     with doc.body:
         script(type="text/javascript", src="{{ url_for('static', filename='js/script.js') }}")
         with div(cls="main-app"):
-            with nav(cls="navbar navbar-dark bg-dark fixed-top"):
+            with div(cls="navbar navbar-dark fixed-top"):
                 with div(cls="container-fluid",id="navbar_container"):
                     with button (cls="navbar-toggler", type="button", data_bs_toggle="offcanvas", data_bs_target="#offcanvasNavbar", aria_controls="offcanvasNavbar", aria_label="Toggle navigation"):
                         span (cls="navbar-toggler-icon")
                     a("ぬいのボタン", cls="navbar-brand",id="heading", href="#")
-                    button("オートポーズオン",cls='ms-auto text-bg-white',id="autopause_on")
+                    
                     with div(cls="nav-item dropdown"):
                         a("日本語",id="lang", cls="nav-link navbar-brand dropdown-toggle", href="#", role="button", data_bs_toggle="dropdown", aria_expanded="false")
-                        with ul(cls="dropdown-menu"):
+                        with ul(cls="dropdown-menu dropdown-menu-end"):
                             a("日本語", cls="dropdown-item lang-switch",data_lang="ja", href="#")
                             a("繁體中文", cls="dropdown-item lang-switch",data_lang="zh_TW", href="#")
                     with div(cls="offcanvas offcanvas-start text-bg-dark",
@@ -48,12 +47,15 @@ def generate():
                                     data_bs_dismiss="offcanvas",
                                     aria_label="Close"):
                                 span(cls="navbar-toggler-icon")
-                            h5("ぬいのボタン",
+                            div("ぬいのボタン",
                                     cls="offcanvas-title",
                                     id="SidebarLabel")
 
                         with div(cls="offcanvas-body"):
-                            with ul(cls="navbar-nav justify-content-end flex-grow-1 pe-3"):
+                            with div(cls="options"):
+                                input_(cls="repeat-check",type="checkbox", value="", id="flexCheckChecked",checked="")
+                                label("前の音声再生を停止",cls="form-check-label",_for="flexCheckChecked",id="autopause_on")
+                            with ul(cls="navbar-nav flex-grow-1 pe-3",id="links"):
                                 with li(cls="nav-item"):
                                     a("Youtube", cls="nav-link", href="https://www.youtube.com/channel/UCF4KiwafRPMgvnfipsk1JZg",target="-blank")
                                 with li(cls="nav-item"):
@@ -61,27 +63,24 @@ def generate():
                                 with li(cls="nav-item"):
                                     a("UNiVIRTUAL", cls="nav-link", href="https://univirtual.jp/",target="-blank")
                 
-                
             with div(cls="container-fluid",id="container_area"):
                 for category_tag,(category, buttons) in enumerate(data.items()):
                     with div():
-                        with div(id='category_area'):
-                            with div(cls="col"):
-                                h3(category,id=category, style="text-align: center;padding-bottom: 5px")
+                        div(category,id='category_area')
                         with div(cls="row"):
                             with div(cls="cate-body"):
                                 for button_tag,button_name in enumerate(buttons):
                                     name,url = button_name.popitem()
-                                    button(name,id=name,**{"data-audio":"{}-{:03d}.mp3".format(category_tag+1,button_tag+1)},type="button", cls="btn btn-primary play-audio",style="margin-bottom: 10px")
+                                    button(name,id=name,**{"data-audio":"{}-{:03d}.mp3".format(category_tag+1,button_tag+1)},type="button", cls="btn btn-danger play-audio")
                                     
-        with div(cls="container-fluid footer-custom", id="page-footer"): # 添加 id 属性
-            with div(cls="row"):
-                # 靠左的div
-                with div(cls="col-md-6"):
-                    p("Left footer content")
-                # 靠右的div
-                with div(cls="col-md-6 text-end"):
-                    p("Right aligned footer content")
+            with div(cls="container-fluid footer-custom", id="page-footer"): # 添加 id 属性
+                with div(cls="row"):
+                    # 靠左的div
+                    with div(cls="col-md-6"):
+                        p("Left footer content")
+                    # 靠右的div
+                    with div(cls="col-md-6 text-end"):
+                        p("Right aligned footer content")
             
     with open("api/templates/index.html","w",encoding="utf_8") as file:
         file.write(doc.render())
