@@ -66,12 +66,12 @@ def generate():
             with div(cls="container-fluid",id="container_area"):
                 for category_tag,(category, buttons) in enumerate(data.items()):
                     with div():
-                        div(category,id='category_area')
+                        div(category,cls="category_area",id="category_{}".format(category_tag+1))
                         with div(cls="row"):
                             with div(cls="cate-body"):
                                 for button_tag,button_name in enumerate(buttons):
                                     name,url = button_name.popitem()
-                                    button(name,id=name,**{"data-audio":"{}-{:03d}.mp3".format(category_tag+1,button_tag+1)},type="button", cls="btn btn-danger play-audio")
+                                    button(name,id="{}-{:03d}".format(category_tag+1,button_tag+1),**{"data-audio":"{}-{:03d}.mp3".format(category_tag+1,button_tag+1)},type="button", cls="btn btn-danger play-audio")
                                     
             with div(cls="container-fluid footer-custom", id="page-footer"): # 添加 id 属性
                 with div(cls="row"):

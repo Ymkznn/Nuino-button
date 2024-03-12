@@ -28,7 +28,7 @@ label {
 .options{
     padding-bottom: 10px;
 }
-#category_area {
+.category_area {
     background-color: #fdb5cd;
     text-align: center;
     border-radius: 15px;
@@ -84,7 +84,7 @@ label {
     #SidebarLabel{
         font-size: 40px;
     }
-    #category_area{
+    .category_area{
         font-size: 50px;
     }
     .cate-body{

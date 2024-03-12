@@ -83,6 +83,7 @@ function switchLanguage(lang) {
 
 function updateTexts(texts) {
     $.each(texts, function(categoryTag, data) {
+        console.log("Processing " + categoryTag + ": " + data);
         if (data !=null){
             $('#' + categoryTag).text(data);
         }
