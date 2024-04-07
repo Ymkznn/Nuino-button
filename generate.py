@@ -14,6 +14,7 @@ def generate():
     with doc.head:
         meta(charset="utf_8")
         #meta(http_equiv="X_UA_Compatible",content="IE=edge")
+        meta(name="google-site-verification",content="fsRhq_lprbn64PdLt3miBwpUTYLT7Y2Je7UE-4ZI3r8")
         meta(name="description",content=description)
         meta(name="viewport",content="width=device_width,initial_scale=1,maxium-scale=1,user-scalable=0")
         link(rel="shortcut icon", type="image/x-icon", href="{{ url_for('static', filename='favicon.ico') }}")
@@ -77,10 +78,12 @@ def generate():
                 with div(cls="row"):
                     # 靠左的div
                     with div(cls="col-md-6"):
-                        p("Left footer content")
+                        p("サイト制作：やまかぜ",style="font-size:15px;margin:0 auto;")
+                        p("音声編集/協力のぬいぐる民さん（敬称略）：ARI、MIHARU、しょー、ただの通りすがり、ひらきょ、ふっく～、ヤナギ、梅",style="font-size:15px;margin:0 auto;")
                     # 靠右的div
                     with div(cls="col-md-6 text-end"):
-                        p("Right aligned footer content")
+                        a("音声投稿",href="https://forms.gle/xYhMXtFcwTdLw8hJ7",target="-blank",style="margin:0 auto;")
+                        p("このサイトはファン作品であり、公式とは関係ありません",style="margin:0 auto;")
             
     with open("api/templates/index.html","w",encoding="utf_8") as file:
         file.write(doc.render())
