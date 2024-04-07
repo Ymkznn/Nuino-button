@@ -13,7 +13,6 @@ def generate():
 
     with doc.head:
         meta(charset="utf-8")
-        #meta(http_equiv="X_UA_Compatible",content="IE=edge")
         meta(name="google-site-verification",content="fsRhq_lprbn64PdLt3miBwpUTYLT7Y2Je7UE-4ZI3r8")
         meta(name="description",content=description['description'])
         meta(name="viewport",content="width=device-width,initial-scale=1")

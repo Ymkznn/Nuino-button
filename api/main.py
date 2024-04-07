@@ -12,7 +12,6 @@ def get_json_data():
     json_request = request.json
     with open('api/static/text/{}.json'.format(json_request['lang']), encoding="utf_8") as f:
         json_data = json.load(f)
-    print(json_data)
     return jsonify(json_data)
 
 if __name__ == '__main__':
