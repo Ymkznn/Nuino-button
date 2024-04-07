@@ -34,7 +34,7 @@ def generate():
                     a(description["site-title"], cls="navbar-brand",id="site-title", href="#")
                     
                     with div(cls="nav-item dropdown"):
-                        a(description["default-lang"],id="lang", cls="nav-link navbar-brand dropdown-toggle", href="#", role="button", data_bs_toggle="dropdown", aria_expanded="false")
+                        a(description["default-lang"],id="default-lang", cls="nav-link navbar-brand dropdown-toggle", href="#", role="button", data_bs_toggle="dropdown", aria_expanded="false")
                         with ul(cls="dropdown-menu dropdown-menu-end"):
                             for lang_id,lang_name in description["lang"].items():
                                 with li():
