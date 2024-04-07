@@ -49,7 +49,7 @@ def generate():
                                     data_bs_dismiss="offcanvas",
                                     aria_label="Close"):
                                 span(cls="navbar-toggler-icon")
-                            div(description["title"], cls="offcanvas-title", id="offcanvas-title")
+                            div(description["offcanvas-title"], cls="offcanvas-title", id="offcanvas-title")
 
                         with div(cls="offcanvas-body"):
                             with div(cls="options"):
@@ -71,13 +71,14 @@ def generate():
                                     button(name,id="{}-{:03d}".format(category_tag+1,button_tag+1),**{"data-audio":"{}-{:03d}.mp3".format(category_tag+1,button_tag+1)},type="button", cls="btn btn-danger play-audio")
                                     
             with div(cls="container-fluid footer-custom", id="page-footer"):
-                with div(cls="row"):
+                with div(cls="row",id='footer'):
                     with div(cls="col-md-6"):
                         p(description["footer_left"],id='footer_left')
                     with div(cls="col-md-6 text-end"):
-                        for item_id,item_info in description["source"].items():
-                            a(item_info[0],href=item_info[1],id=item_id,target="-blank",style="margin:0 auto;")
                         p(description["declaration"],id="declaration")
+                        for item_id,item_info in description["source"].items():
+                            a(item_info[0],cls='sources',href=item_info[1],id=item_id,target="-blank")
+                
             
     with open("api/templates/index.html","w",encoding="utf_8") as file:
         file.write(doc.render())
