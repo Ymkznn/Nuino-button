@@ -73,11 +73,11 @@ def generate():
             with div(cls="container-fluid footer-custom", id="page-footer"):
                 with div(cls="row"):
                     with div(cls="col-md-6"):
-                        p(description["footer_left"],style="font-size:15px;margin:0 auto;white-space: pre-line;",id='footer_left')
+                        p(description["footer_left"],id='footer_left')
                     with div(cls="col-md-6 text-end"):
                         for item_id,item_info in description["source"].items():
                             a(item_info[0],href=item_info[1],id=item_id,target="-blank",style="margin:0 auto;")
-                        p(description["declaration"],id="declaration",style="margin:0 auto;")
+                        p(description["declaration"],id="declaration")
             
     with open("api/templates/index.html","w",encoding="utf_8") as file:
         file.write(doc.render())

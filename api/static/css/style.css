@@ -51,6 +51,14 @@ label {
 #autopause_off {
     margin-right: 10px;
 }
+#footer_left{
+    font-size:15px;
+    margin:0 auto;
+    white-space: pre-line;
+}
+#declaration{
+    margin:0 auto;
+}
 .cate-body button{
     background-color: #eb5d85;
     margin-top: 5px;
@@ -73,38 +81,10 @@ label {
 }
 
 @media (max-width: 1000px) {
-    .navbar button{
-        font-size: 60px;
-    }
-    #autopause_on{
-        font-size: 30px;
-    }
-    #autopause_off{
-        font-size: 30px;
-    }
-    .navbar a{
-        font-size: 40px;
-    }
-    #SidebarLabel{
-        font-size: 40px;
-    }
-    .category_area{
-        font-size: 50px;
-    }
     .cate-body{
         text-align: center;
-        padding: 15px;
     }
-    .cate-body button{
-        font-size: 35px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        margin-right: 20px;
-    }
-    .options{
-        padding-left: 20px;
-    }
-    #links{
-        padding-left: 20px;
+    #page-footer,#footer_left{
+        font-size: 10px;
     }
 }
