@@ -28,26 +28,24 @@ $(document).ready(function() {
         currentAudio = audio;
     });
 
-    $("#autopause_on").click(function(){
+    $("#voice_pause").click(function(){
         // 切換自動暫停功能的狀態
         var lang = document.documentElement.lang
         msg = updateToggleButton(lang,autoPauseEnabled);
-        if (autoPauseEnabled) {
-            $(this).attr("id", "autopause_off");
-        } else {
-            $(this).attr("id", "autopause_on");
-        }
         autoPauseEnabled = !autoPauseEnabled;
     });
 });
 
 function updateToggleButton(lang,autoPauseEnabled) {
     var toggleButtonText;
+    var postData = { "lang": lang };
     $.ajax({
-        url: `/${lang}`,
-        method: 'GET',
+        url: `/data_request`,
+        method: 'POST',
         dataType: 'json',
         async: false, // 將 AJAX 請求設為同步
+        data: JSON.stringify(postData),
+        contentType: 'application/json',
         success: function(data) {
             if (!autoPauseEnabled){
                 toggleButtonText = data["autopause_on"];
@@ -65,11 +63,16 @@ function updateToggleButton(lang,autoPauseEnabled) {
 
 
 function switchLanguage(lang) {
+    // 构造要发送的数据
+    var postData = { "lang": lang };
+
     $.when(
         $.ajax({
-            url: `/${lang}`,
-            method: 'GET',
-            dataType: 'json'
+            url: '/data_request',
+            method: 'POST',
+            dataType: 'json',
+            data: JSON.stringify(postData), // 将数据转换为 JSON 字符串
+            contentType: 'application/json' // 设置 Content-Type 为 application/json
         })
     ).done(function(textsData) {
         updateTexts(textsData);
@@ -83,7 +86,6 @@ function switchLanguage(lang) {
 
 function updateTexts(texts) {
     $.each(texts, function(categoryTag, data) {
-        console.log("Processing " + categoryTag + ": " + data);
         if (data !=null){
             $('#' + categoryTag).text(data);
         }

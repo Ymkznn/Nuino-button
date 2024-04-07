@@ -7,16 +7,16 @@ def generate():
         description = json.load(file)
     with open("api/static/text/data.json", "r", encoding="utf-8") as file:
         data = json.load(file)
-    doc = dominate.document(title=description["site-title"])
+    doc = dominate.document(title=description["title"])
     with doc:
         html(lang="ja")
 
     with doc.head:
-        meta(charset="utf_8")
+        meta(charset="utf-8")
         #meta(http_equiv="X_UA_Compatible",content="IE=edge")
         meta(name="google-site-verification",content="fsRhq_lprbn64PdLt3miBwpUTYLT7Y2Je7UE-4ZI3r8")
         meta(name="description",content=description['description'])
-        meta(name="viewport",content="width=device_width,initial_scale=1,maxium-scale=1,user-scalable=0")
+        meta(name="viewport",content="width=device-width,initial-scale=1")
         link(rel="shortcut icon", type="image/x-icon", href="{{ url_for('static', filename='favicon.ico') }}")
         link(rel="stylesheet", type="text/css",href="{{ url_for('static', filename='css/style.css') }}")
         link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css")
@@ -31,13 +31,14 @@ def generate():
                 with div(cls="container-fluid",id="navbar_container"):
                     with button (cls="navbar-toggler", type="button", data_bs_toggle="offcanvas", data_bs_target="#offcanvasNavbar", aria_controls="offcanvasNavbar", aria_label="Toggle navigation"):
                         span (cls="navbar-toggler-icon")
-                    a(description["title"], cls="navbar-brand",id="heading", href="#")
+                    a(description["site-title"], cls="navbar-brand",id="site-title", href="#")
                     
                     with div(cls="nav-item dropdown"):
                         a(description["default-lang"],id="lang", cls="nav-link navbar-brand dropdown-toggle", href="#", role="button", data_bs_toggle="dropdown", aria_expanded="false")
                         with ul(cls="dropdown-menu dropdown-menu-end"):
                             for lang_id,lang_name in description["lang"].items():
-                                a(lang_name,id=lang_id, cls="dropdown-item lang-switch",data_lang=lang_id, href="#")
+                                with li():
+                                    a(lang_name,id=lang_id, cls="dropdown-item lang-switch",data_lang=lang_id, href="#")
                     
                     with div(cls="offcanvas offcanvas-start text-bg-dark",
                                 tabindex="_1",
@@ -49,14 +50,12 @@ def generate():
                                     data_bs_dismiss="offcanvas",
                                     aria_label="Close"):
                                 span(cls="navbar-toggler-icon")
-                            div(description["title"],
-                                    cls="offcanvas-title",
-                                    id="SidebarLabel")
+                            div(description["title"], cls="offcanvas-title", id="offcanvas-title")
 
                         with div(cls="offcanvas-body"):
                             with div(cls="options"):
                                 input_(cls="repeat-check",type="checkbox", value="", id="flexCheckChecked",checked="")
-                                label(description["voice_pause"],cls="form-check-label",_for="flexCheckChecked",id="autopause_on")
+                                label(description["voice_pause"],cls="form-check-label",_for="flexCheckChecked",id="voice_pause")
                             with ul(cls="navbar-nav flex-grow-1 pe-3",id="links"):
                                 with li(cls="nav-item"):
                                     for site_id,site_info in description["links"].items():
@@ -75,8 +74,7 @@ def generate():
             with div(cls="container-fluid footer-custom", id="page-footer"):
                 with div(cls="row"):
                     with div(cls="col-md-6"):
-                        for item in description["footer_left"]:
-                            p(item,style="font-size:15px;margin:0 auto;")
+                        p(description["footer_left"],style="font-size:15px;margin:0 auto;white-space: pre-line;",id='footer_left')
                     with div(cls="col-md-6 text-end"):
                         for item_id,item_info in description["source"].items():
                             a(item_info[0],href=item_info[1],id=item_id,target="-blank",style="margin:0 auto;")
