@@ -3,6 +3,12 @@ $(document).ready(function() {
     var autoPauseEnabled = true; // default auto pause 
     var currentAudio = null; // now playing audio
 
+    $('#site-title').click(function(){
+        //back to top
+        $('html, body').animate({scrollTop : 0},0);
+        return false;
+    });
+
     $('.lang-switch').click(function() {
         var lang = $(this).data('lang');
         switchLanguage(lang);
