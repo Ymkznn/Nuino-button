@@ -3,11 +3,11 @@ import dominate
 import json
 
 def generate():
-    with open("api/static/text/description.txt","r",encoding="utf_8") as file:
-        description = file.read()
-    with open("api/static/text/data.json", "r", encoding="utf_8") as f:
-        data = json.load(f)
-    doc = dominate.document(title="ぬいのボタン NUINO_BUTTON")
+    with open("api/static/text/description.json","r",encoding="utf-8") as file:
+        description = json.load(file)
+    with open("api/static/text/data.json", "r", encoding="utf-8") as file:
+        data = json.load(file)
+    doc = dominate.document(title=description["site-title"])
     with doc:
         html(lang="ja")
 
@@ -15,7 +15,7 @@ def generate():
         meta(charset="utf_8")
         #meta(http_equiv="X_UA_Compatible",content="IE=edge")
         meta(name="google-site-verification",content="fsRhq_lprbn64PdLt3miBwpUTYLT7Y2Je7UE-4ZI3r8")
-        meta(name="description",content=description)
+        meta(name="description",content=description['description'])
         meta(name="viewport",content="width=device_width,initial_scale=1,maxium-scale=1,user-scalable=0")
         link(rel="shortcut icon", type="image/x-icon", href="{{ url_for('static', filename='favicon.ico') }}")
         link(rel="stylesheet", type="text/css",href="{{ url_for('static', filename='css/style.css') }}")
@@ -31,13 +31,14 @@ def generate():
                 with div(cls="container-fluid",id="navbar_container"):
                     with button (cls="navbar-toggler", type="button", data_bs_toggle="offcanvas", data_bs_target="#offcanvasNavbar", aria_controls="offcanvasNavbar", aria_label="Toggle navigation"):
                         span (cls="navbar-toggler-icon")
-                    a("ぬいのボタン", cls="navbar-brand",id="heading", href="#")
+                    a(description["title"], cls="navbar-brand",id="heading", href="#")
                     
                     with div(cls="nav-item dropdown"):
-                        a("日本語",id="lang", cls="nav-link navbar-brand dropdown-toggle", href="#", role="button", data_bs_toggle="dropdown", aria_expanded="false")
+                        a(description["default-lang"],id="lang", cls="nav-link navbar-brand dropdown-toggle", href="#", role="button", data_bs_toggle="dropdown", aria_expanded="false")
                         with ul(cls="dropdown-menu dropdown-menu-end"):
-                            a("日本語", cls="dropdown-item lang-switch",data_lang="ja", href="#")
-                            a("繁體中文", cls="dropdown-item lang-switch",data_lang="zh_TW", href="#")
+                            for lang_id,lang_name in description["lang"].items():
+                                a(lang_name,id=lang_id, cls="dropdown-item lang-switch",data_lang=lang_id, href="#")
+                    
                     with div(cls="offcanvas offcanvas-start text-bg-dark",
                                 tabindex="_1",
                                 id="offcanvasNavbar",
@@ -48,21 +49,18 @@ def generate():
                                     data_bs_dismiss="offcanvas",
                                     aria_label="Close"):
                                 span(cls="navbar-toggler-icon")
-                            div("ぬいのボタン",
+                            div(description["title"],
                                     cls="offcanvas-title",
                                     id="SidebarLabel")
 
                         with div(cls="offcanvas-body"):
                             with div(cls="options"):
                                 input_(cls="repeat-check",type="checkbox", value="", id="flexCheckChecked",checked="")
-                                label("前の音声再生を停止",cls="form-check-label",_for="flexCheckChecked",id="autopause_on")
+                                label(description["voice_pause"],cls="form-check-label",_for="flexCheckChecked",id="autopause_on")
                             with ul(cls="navbar-nav flex-grow-1 pe-3",id="links"):
                                 with li(cls="nav-item"):
-                                    a("Youtube", cls="nav-link", href="https://www.youtube.com/channel/UCF4KiwafRPMgvnfipsk1JZg",target="-blank")
-                                with li(cls="nav-item"):
-                                    a("Twitter", cls="nav-link", href="https://twitter.com/Kohaku_Nuino",target="-blank")
-                                with li(cls="nav-item"):
-                                    a("UNiVIRTUAL", cls="nav-link", href="https://univirtual.jp/",target="-blank")
+                                    for site_id,site_info in description["links"].items():
+                                        a(site_info[0],id=site_id, cls="nav-link", href=site_info[1],target="-blank")
                 
             with div(cls="container-fluid",id="container_area"):
                 for category_tag,(category, buttons) in enumerate(data.items()):
@@ -74,16 +72,15 @@ def generate():
                                     name,url = button_name.popitem()
                                     button(name,id="{}-{:03d}".format(category_tag+1,button_tag+1),**{"data-audio":"{}-{:03d}.mp3".format(category_tag+1,button_tag+1)},type="button", cls="btn btn-danger play-audio")
                                     
-            with div(cls="container-fluid footer-custom", id="page-footer"): # 添加 id 属性
+            with div(cls="container-fluid footer-custom", id="page-footer"):
                 with div(cls="row"):
-                    # 靠左的div
                     with div(cls="col-md-6"):
-                        p("サイト制作：やまかぜ",style="font-size:15px;margin:0 auto;")
-                        p("音声編集/協力のぬいぐる民さん（敬称略）：ARI、MIHARU、しょー、ただの通りすがり、ひらきょ、ふっく～、ヤナギ、梅",style="font-size:15px;margin:0 auto;")
-                    # 靠右的div
+                        for item in description["footer_left"]:
+                            p(item,style="font-size:15px;margin:0 auto;")
                     with div(cls="col-md-6 text-end"):
-                        a("音声投稿",href="https://forms.gle/xYhMXtFcwTdLw8hJ7",target="-blank",style="margin:0 auto;")
-                        p("このサイトはファン作品であり、公式とは関係ありません",style="margin:0 auto;")
+                        for item_id,item_info in description["source"].items():
+                            a(item_info[0],href=item_info[1],id=item_id,target="-blank",style="margin:0 auto;")
+                        p(description["declaration"],id="declaration",style="margin:0 auto;")
             
     with open("api/templates/index.html","w",encoding="utf_8") as file:
         file.write(doc.render())
