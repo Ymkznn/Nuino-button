@@ -12,7 +12,8 @@ dominate>=2.9.1
 
 # Usage
 Clone all the documents to local.
-This document is built using Python Flask. You can deploy the code to any supported platform, such as Vercel.
+This document is built using Python Flask. You can deploy the code to any supported platform, such as Vercel.  
+If you're using Vercel to build the website, you only need to deploy the entire document to Vercel.
 
 generate.py can help you update index.html.
 
