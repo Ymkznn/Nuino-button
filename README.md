@@ -10,6 +10,11 @@ Related Links:
 Flask>=3.0.2  
 dominate>=2.9.1
 
+## Installation
+
+`pip install flask`
+`pip install dominate`
+
 # Usage
 Clone all the documents to local.
 This document is built using Python Flask. You can deploy the code to any supported platform, such as Vercel.  
@@ -27,3 +32,10 @@ All button categories, names, and supplementary information (such as audio sourc
 The audio format must be mp3 and saved in the format category-number.mp3 in [api/static/audios/.](https://github.com/Ymkznn/Nuino-button/tree/main/api/static/audios)
 
 You can freely change the website's color scheme or form in [api/static/css/style.css.](https://github.com/Ymkznn/Nuino-button/blob/main/api/static/css/style.css)
+
+
+You can create "update.py" in the root directory and execute it."
+```sh
+import generate
+generate.generate()
+```
