@@ -12,7 +12,7 @@ dominate>=2.9.1
 
 ## Installation
 
-`pip install flask`
+`pip install flask`  
 `pip install dominate`
 
 # Usage
