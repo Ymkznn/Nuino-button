@@ -7,7 +7,8 @@ Related Links:
 * [Kohaku Nuino's Twitter](https://twitter.com/Kohaku_Nuino)
 
 # Requirements
-Flask>=3.0.2\n
+Flask>=3.0.2
+
 dominate>=2.9.1
 
 # Usage
