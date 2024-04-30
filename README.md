@@ -17,12 +17,11 @@ This document is built using Python Flask. You can deploy the code to any suppor
 generate.py can help you update index.html.
 
 All the parameters needed for generate are set in [api/static/text/description.json.](https://github.com/Ymkznn/Nuino-button/blob/main/api/static/text/description.json)
-[api/static/text/description.json.](https://github.com/Ymkznn/Nuino-button/blob/main/api/static/text/description.json) 
+
+The 'lang' parameter in [api/static/text/description.json](https://github.com/Ymkznn/Nuino-button/blob/main/api/static/text/description.json) will generate corresponding translation files in [/api/static/text](https://github.com/Ymkznn/Nuino-button/tree/main/api/static/text) when using generate.py to generate index.html.
 
 All button categories, names, and supplementary information (such as audio sources, etc.) are stored in [api/static/text/data.json.](https://github.com/Ymkznn/Nuino-button/blob/main/api/static/text/data.json) 
 *The supplementary information will not be displayed on the website.
-
-The 'lang' parameter in [api/static/text/description.json](https://github.com/Ymkznn/Nuino-button/blob/main/api/static/text/description.json) will generate corresponding translation files in [/api/static/text](https://github.com/Ymkznn/Nuino-button/tree/main/api/static/text) when using generate.py to generate index.html.
 
 The audio format must be mp3 and saved in the format category-number.mp3 in [api/static/audios/.](https://github.com/Ymkznn/Nuino-button/tree/main/api/static/audios)
 
