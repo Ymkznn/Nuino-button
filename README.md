@@ -70,6 +70,7 @@ Here is the example(If it's the first button in category 1):
 ```
 1-001.mp3
 ```
+*The audio format must be mp3
 
 5.Fill in the category and button names in [auto.py](https://github.com/Ymkznn/Nuino-button/blob/main/auto.py).  
 ```
@@ -77,21 +78,11 @@ import add_json
 import generate
 
 category = 'かわいい'
-file_name = 'かわいい～えっち～'
+button_name = 'かわいい～えっち～'
 add_json.update_json_data(category, button_name)
 generate.generate()
 ```
 
 6.Run [auto.py](https://github.com/Ymkznn/Nuino-button/blob/main/auto.py) again.
-
-auto.py can help you update index.html.  
-All the parameters needed for generate are set in [api/static/text/description.json.](https://github.com/Ymkznn/Nuino-button/blob/main/api/static/text/description.json)
-
-The 'lang' parameter in [api/static/text/description.json](https://github.com/Ymkznn/Nuino-button/blob/main/api/static/text/description.json) will generate corresponding translation files in [/api/static/text](https://github.com/Ymkznn/Nuino-button/tree/main/api/static/text) when using auto.py to generate index.html.
-
-All button categories, names, and supplementary information (such as audio sources, etc.) are stored in [api/static/text/data.json.](https://github.com/Ymkznn/Nuino-button/blob/main/api/static/text/data.json) 
-*The supplementary information will not be displayed on the website.
-
-The audio format must be mp3 and saved in the format category-number.mp3 in [api/static/audios/.](https://github.com/Ymkznn/Nuino-button/tree/main/api/static/audios)
 
 You can freely change the website's color scheme or form in [api/static/css/style.css.](https://github.com/Ymkznn/Nuino-button/blob/main/api/static/css/style.css)
