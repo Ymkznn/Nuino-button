@@ -20,6 +20,8 @@ Clone all the documents to local.
 This document is built using Python Flask. You can deploy the code to any supported platform, such as Vercel.  
 If you're using Vercel to build the website, you only need to deploy the entire document to Vercel.
 
+1.Modify all the data in [api/static/text/description.json](https://github.com/Ymkznn/Nuino-button/blob/main/api/static/text/description.json).  
+Here is the example:  
 ```
 {
     "description":"ぬいのボタン; 心羽白ぬいの; nuino kohaku; vtuber button",
@@ -45,7 +47,43 @@ If you're using Vercel to build the website, you only need to deploy the entire 
     },
     "declaration":"このサイトはファン作品であり、公式とは関係ありません"
 }
+```  
+
+2.Modify the categories in [api/static/text/data.json](https://github.com/Ymkznn/Nuino-button/blob/main/api/static/text/data.json).  
+Here is the example:  
 ```
+{
+    "かわいい": [],
+    "うまい": [],
+    "病み": [],
+    "奇声": [],
+    "名言": [],
+    "モノマネ": [],
+    "その他": []
+}
+```
+
+3.Running [auto.py](https://github.com/Ymkznn/Nuino-button/blob/main/auto.py) will generate an empty website.  
+
+4.Name the audio file as "ategory number-number.mp3" and place it in the [api/static/audios/](https://github.com/Ymkznn/Nuino-button/tree/main/api/static/audios).  
+Here is the example(If it's the first button in category 1):  
+```
+1-001.mp3
+```
+
+5.Fill in the category and button names in [auto.py](https://github.com/Ymkznn/Nuino-button/blob/main/auto.py).  
+```
+import add_json
+import generate
+
+category = 'かわいい'
+file_name = 'かわいい～えっち～'
+add_json.update_json_data(category, button_name)
+generate.generate()
+```
+
+6.Run [auto.py](https://github.com/Ymkznn/Nuino-button/blob/main/auto.py) again.
+
 auto.py can help you update index.html.  
 All the parameters needed for generate are set in [api/static/text/description.json.](https://github.com/Ymkznn/Nuino-button/blob/main/api/static/text/description.json)
 
