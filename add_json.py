@@ -4,7 +4,7 @@ def update_json_data(target_category, updated_audio, audio_data=None, streaming_
         data_json = 'api/static/text/data.json'
         description_json = 'api/static/text/description.json'
         updated_audio = updated_audio.split('.')[0]
-        if updated_audio is '':
+        if updated_audio == '':
             return
 
         #get ids
