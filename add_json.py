@@ -1,6 +1,6 @@
 import json
 
-def update_json_data(target_category, updated_audio, audio_data, streaming_url=None):
+def update_json_data(target_category, updated_audio, audio_data=None, streaming_url=None):
         data_json = 'api/static/text/data.json'
         description_json = 'api/static/text/description.json'
         updated_audio = updated_audio.split('.')[0]
@@ -15,8 +15,9 @@ def update_json_data(target_category, updated_audio, audio_data, streaming_url=N
         if {updated_audio:streaming_url} not in data[target_category]:
             data[target_category].append({updated_audio:streaming_url})
             audio_name = '{}-{:03d}.mp3'.format(list(data.keys()).index(target_category)+1,len(data[target_category]))
-            with open('api/static/audios/{}'.format(audio_name),'wb') as file:
-                file.write(audio_data)
+            if audio_data is not None:
+                with open('api/static/audios/{}'.format(audio_name),'wb') as file:
+                    file.write(audio_data)
         with open(data_json, 'w', encoding='utf-8') as file:
             json.dump(data, file, ensure_ascii=False, indent=4)
             
