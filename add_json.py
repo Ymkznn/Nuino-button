@@ -3,7 +3,7 @@ import json
 def update_json_data(target_category, updated_audio, audio_data=None, streaming_url=None):
         data_json = 'api/static/text/data.json'
         description_json = 'api/static/text/description.json'
-        updated_audio = updated_audio.split('.')[0]
+        updated_audio = updated_audio
 
         #get ids
         with open(data_json, 'r', encoding='utf-8') as file:
