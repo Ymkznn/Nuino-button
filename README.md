@@ -66,6 +66,7 @@ Here is the example:
 ```
 
 3.Running [auto.py](https://github.com/Ymkznn/Nuino-button/blob/main/auto.py) will generate an empty website.  
+![image](https://github.com/Ymkznn/Nuino-button/blob/main/readme_photo/step3.png)
 
 4.Name the audio file as "ategory number-number.mp3" and place it in the [api/static/audios/](https://github.com/Ymkznn/Nuino-button/tree/main/api/static/audios).  
 Here is the example(If it's the first button in category 1):  
