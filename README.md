@@ -65,7 +65,7 @@ Here is the example:
 }
 ```
 
-3.Running [auto.py](https://github.com/Ymkznn/Nuino-button/blob/main/auto.py) will generate an empty website.(You can run main.py to view the website in [127.0.0.1](http://127.0.0.1:5000/))  
+3.Running [auto.py](https://github.com/Ymkznn/Nuino-button/blob/main/auto.py) will generate an empty website.(You can run [api/main.py](https://github.com/Ymkznn/Nuino-button/blob/main/api/main.py) to view the website in [127.0.0.1](http://127.0.0.1:5000/))  
 ![image](https://github.com/Ymkznn/Nuino-button/blob/main/readme_photo/step3.png)
 
 4.Name the audio file as "ategory number-number.mp3" and place it in the [api/static/audios/](https://github.com/Ymkznn/Nuino-button/tree/main/api/static/audios).  
