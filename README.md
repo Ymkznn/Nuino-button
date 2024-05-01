@@ -20,13 +20,10 @@ Clone all the documents to local.
 This document is built using Python Flask. You can deploy the code to any supported platform, such as Vercel.  
 If you're using Vercel to build the website, you only need to deploy the entire document to Vercel.
 
-generate.py can help you update index.html.  
-You can create "update.py" in the root directory and execute it."
-```sh
-import generate
-generate.generate()
-```
+auto.py can help you update index.html.  
 All the parameters needed for generate are set in [api/static/text/description.json.](https://github.com/Ymkznn/Nuino-button/blob/main/api/static/text/description.json)
+
+The 'lang' parameter in [api/static/text/description.json](https://github.com/Ymkznn/Nuino-button/blob/main/api/static/text/description.json) will generate corresponding translation files in [/api/static/text](https://github.com/Ymkznn/Nuino-button/tree/main/api/static/text) when using auto.py to generate index.html.
 
 All button categories, names, and supplementary information (such as audio sources, etc.) are stored in [api/static/text/data.json.](https://github.com/Ymkznn/Nuino-button/blob/main/api/static/text/data.json) 
 *The supplementary information will not be displayed on the website.

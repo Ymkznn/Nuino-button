@@ -1,8 +1,6 @@
 .vercel
 api/static/text/description.txt
-add_json.py
 api/static/temp_audio
-auto.py
 __pycache__
 listener's voice
 text.html
