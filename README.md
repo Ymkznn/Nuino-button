@@ -86,6 +86,7 @@ add_json.update_json_data(category, button_name)
 generate.generate()
 ```
 
-6.Run [auto.py](https://github.com/Ymkznn/Nuino-button/blob/main/auto.py) again.
+6.Run [auto.py](https://github.com/Ymkznn/Nuino-button/blob/main/auto.py) again.  
+![image](https://github.com/Ymkznn/Nuino-button/blob/main/readme_photo/step6.png)
 
 You can freely change the website's color scheme or form in [api/static/css/style.css.](https://github.com/Ymkznn/Nuino-button/blob/main/api/static/css/style.css)
