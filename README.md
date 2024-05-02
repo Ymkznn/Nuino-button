@@ -84,7 +84,22 @@ category = 'かわいい'
 button_name = 'かわいい～えっち～'
 add_json.update_json_data(category, button_name)
 generate.generate()
+```  
+or you can:  
 ```
+import add_json
+import generate
+
+category = 'かわいい'
+button_name = 'かわいい～えっち～'
+
+with open('かわいい～えっち～.mp3','rb') as file:
+    audio_file = file.read()
+
+add_json.update_json_data(category, button_name,audio_data=audio_file)
+generate.generate()
+```  
+it will auto generate mp3 to [api/static/audios/](https://github.com/Ymkznn/Nuino-button/tree/main/api/static/audios).  
 
 6.Run [auto.py](https://github.com/Ymkznn/Nuino-button/blob/main/auto.py) again.  
 ![image](https://github.com/Ymkznn/Nuino-button/blob/main/readme_photo/step6.png)
