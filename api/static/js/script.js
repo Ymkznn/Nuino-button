@@ -47,7 +47,7 @@ $(document).ready(function() {
         currentAudio = audio;
     });
 
-    $("#voice_pause").click(function(){
+    $("#voice-pause").click(function(){
         //change statement
         autoPauseEnabled = !autoPauseEnabled;
     });
