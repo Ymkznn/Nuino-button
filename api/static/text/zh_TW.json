@@ -1,6 +1,8 @@
 {
     "zh_TW": "繁體中文",
+    "volume-setting": "音量",
     "voice_pause": "暫停播放中的語音",
+    "voice-pause": "前の音声再生を停止",
     "title": "ぬいの按鈕 NUINO_BUTTON",
     "site-title": "ぬいの按鈕",
     "offcanvas-title": "ぬいの按鈕",
@@ -18,7 +20,9 @@
     "category_3": "病嬌",
     "category_2": "好喝",
     "category_1": "可愛",
+    "allow-volume-setting": true,
     "Youtube": "Youtube",
+    "YURUCHI_BUTTON": " ゆるちボタン YURUCHI_BUTTON",
     "Unofficial_wiki": "非官方wiki",
     "UNiVIRTUAL": "UNiVIRTUAL",
     "Twitter": "Twitter",
