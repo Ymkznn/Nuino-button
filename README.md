@@ -35,6 +35,8 @@ Here is the example:
         "ja":"日本語",
         "zh_TW":"繁體中文"
     },
+    "allow-volume-setting":true,
+    "volume-setting":"音量",
     "voice_pause":"前の音声再生を停止",
     "links":{
         "Youtube":["Youtube","https://www.youtube.com/channel/UCF4KiwafRPMgvnfipsk1JZg"],
