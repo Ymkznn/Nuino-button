@@ -77,7 +77,8 @@ def generate():
                             with div(cls="cate-body"):
                                 for button_tag,button_name in enumerate(buttons):
                                     name,url = button_name.popitem()
-                                    button(name,id="{}-{:03d}".format(category_tag+1,button_tag+1),**{"data-audio":"{}-{:03d}.mp3".format(category_tag+1,button_tag+1)},type="button", cls="btn btn-danger play-audio")
+                                    with button(id="{}-{:03d}".format(category_tag+1,button_tag+1),**{"data-audio":"{}-{:03d}.mp3".format(category_tag+1,button_tag+1)},type="button", cls="btn btn-danger play-audio"):
+                                        span(name,cls="content")
                                     
             with div(cls="container-fluid footer-custom", id="page-footer"):
                 with div(cls="row",id='footer'):

@@ -25,8 +25,10 @@ $(document).ready(function() {
         var cut_setting = document.getElementById("flexCheckChecked");
         if (cut_setting.checked){
             autoPauseEnabled = true;
+            $('.play-audio .progress').remove();
         }else{
             autoPauseEnabled = false;
+            $(this).find('.progress').remove();
         }
         if (autoPauseEnabled && currentAudio !== null) {
             currentAudio.pause();
@@ -52,7 +54,6 @@ $(document).ready(function() {
         gainNode.gain.value = f(volume_setting.value) // increase the volume above 100%
 
         var echo_setting = document.querySelector("#echoCheckChecked");
-        console.log(echo_setting.value / 33)
         if (echo_setting.value == 0){
             source.connect(gainNode);
             gainNode.connect(audioCtx.destination);
@@ -82,6 +83,19 @@ $(document).ready(function() {
             outputNode.connect(audioCtx.destination);
         }
 
+        // Check if progress bar already exists
+
+        const progressContainer = $('<div>').addClass('progress');
+        const progressBar = $('<div>').addClass('progress-bar').css('width', '0%');
+        progressContainer.append(progressBar);
+        $(this).append(progressContainer);
+        // Start the progress bar animation
+        const interval = 100; // Update interval in milliseconds
+        
+        progressInterval = setInterval(() => {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            progressBar.css('width', progress + '%');
+        }, interval);
 
         audio.play();
     
