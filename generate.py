@@ -57,6 +57,10 @@ def generate():
                                     div(description["volume-setting"],cls="col",id="volume-setting")
                                     with div(cls="col volume-control"):
                                         input_(type="range",cls="styled-slider slider-progress",id="volumeRange",min="0",max="150",value="100")
+                                with div(cls="row",id="echo-container"):
+                                    div(description["echo-effect"],cls="col",id="echo-effect")
+                                    with div(cls="col echo-control"):
+                                        input_(type="range",cls="styled-slider slider-progress",id="echoCheckChecked",min="0",max="99",value="0")
                             with div(cls="options"):
                                 input_(cls="repeat-check",type="checkbox", value="", id="flexCheckChecked",checked="")
                                 label(description["voice-pause"],cls="form-check-label",_for="flexCheckChecked",id="voice-pause")

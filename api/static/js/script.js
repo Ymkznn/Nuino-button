@@ -1,6 +1,6 @@
 $(document).ready(function() {
     //change playing mode
-    var autoPauseEnabled = true; // default auto pause 
+    var autoPauseEnabled; // default auto pause 
     var currentAudio = null; // now playing audio
 
     $('#site-title').click(function(){
@@ -22,6 +22,12 @@ $(document).ready(function() {
         var encodedFileName = encodeURIComponent(audioFileName);
         var audioFile = '/static/audios/' + encodedFileName;
         // if autoPause on and now playing audio
+        var cut_setting = document.getElementById("flexCheckChecked");
+        if (cut_setting.checked){
+            autoPauseEnabled = true;
+        }else{
+            autoPauseEnabled = false;
+        }
         if (autoPauseEnabled && currentAudio !== null) {
             currentAudio.pause();
         }
@@ -33,23 +39,54 @@ $(document).ready(function() {
         var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         var source = audioCtx.createMediaElementSource(audio);
         var gainNode = audioCtx.createGain();
+
+        var inputNode = audioCtx.createGain();
+        var reverbNode = audioCtx.createConvolver();
+        var outputNode = audioCtx.createGain();
+        var wet = audioCtx.createGain();
+        var dry = audioCtx.createGain();
+
         function f(x) {
             return x*0.01;
         }
         gainNode.gain.value = f(volume_setting.value) // increase the volume above 100%
-        source.connect(gainNode);
-        gainNode.connect(audioCtx.destination);
-        
-        
+
+        var echo_setting = document.querySelector("#echoCheckChecked");
+        console.log(echo_setting.value / 33)
+        if (echo_setting.value == 0){
+            source.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+        }else{
+            var sampleRate = audioCtx.sampleRate;
+            var length = sampleRate * (echo_setting.value / 33); // 2 seconds
+            var impulse = audioCtx.createBuffer(2, length, sampleRate);
+            var impulseL = impulse.getChannelData(0);
+            var impulseR = impulse.getChannelData(1);
+
+            for (var i = 0; i < length; i++) {
+                impulseL[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / length, 1);
+                impulseR[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / length, 1);
+            }
+            wet.gain.value = 0.5;
+            dry.gain.value = 0.5;
+            reverbNode.buffer = impulse;
+            
+            source.connect(gainNode);
+            gainNode.connect(inputNode);
+
+            inputNode.connect(reverbNode);
+            reverbNode.connect(wet);
+            inputNode.connect(dry);
+            dry.connect(outputNode);
+            wet.connect(outputNode);
+            outputNode.connect(audioCtx.destination);
+        }
+
+
         audio.play();
     
         // set audio
         currentAudio = audio;
-    });
-
-    $("#voice-pause").click(function(){
-        //change statement
-        autoPauseEnabled = !autoPauseEnabled;
     });
 });
 
