@@ -4,4 +4,5 @@ __pycache__
 listener's voice
 text.html
 temp_audio/*
+!temp_audio/
 vercel.json
