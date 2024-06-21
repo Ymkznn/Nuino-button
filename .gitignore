@@ -1,6 +1,4 @@
 __pycache__
 .vercel
 .vscode
-temp_audio/*
-!temp_audio/
 vercel.json
