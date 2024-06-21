@@ -66,7 +66,10 @@ Here is the example:
     "その他": []
 }
 ```
-2.use [develope.py](https://github.com/Ymkznn/Nuino-button/blob/main/develope.py) to set/delete button or change button's voice.  
+
+3.run main.py
+
+4.use [develope.py](https://github.com/Ymkznn/Nuino-button/blob/main/develope.py) to set/delete button or change button's voice.  
 Here is the example:  
 create `example.py`  
 ```
@@ -76,7 +79,6 @@ develope.add_audio('category','button_name.mp3') #mp3 file name will be used on 
 develope.del_audio('category','button_name')
 develope.change_audio('category','button_name','new_audio.mp3') #it will not change button name
 ```  
-6.Run [auto.py](https://github.com/Ymkznn/Nuino-button/blob/main/auto.py) again.  
-![image](https://github.com/Ymkznn/Nuino-button/blob/main/readme_photo/step6.png)
 
+5.just F5 and see the change
 You can freely change the website's color scheme or form in [static/css/style.css.](https://github.com/Ymkznn/Nuino-button/blob/main/static/css/style.css)
