@@ -22,7 +22,7 @@ If you're using Vercel to build the website, you only need to deploy the entire 
 
 download this source code:[Nuino-button](https://github.com/Ymkznn/Nuino-button/archive/refs/heads/main.zip)  
 
-1.Modify all the data in [static/text/description.json](https://github.com/Ymkznn/Nuino-button/blob/main/description.json).  
+1.Modify all the data in [description.json](https://github.com/Ymkznn/Nuino-button/blob/main/description.json).  
 Here is the example:  
 ```
 {
@@ -53,7 +53,7 @@ Here is the example:
 }
 ```  
 
-2.Modify the categories in [static/text/data.json](https://github.com/Ymkznn/Nuino-button/blob/main/static/text/data.json).  
+2.Modify the categories in [data.json](https://github.com/Ymkznn/Nuino-button/blob/main/data.json).  
 Here is the example:  
 ```
 {
@@ -66,9 +66,16 @@ Here is the example:
     "その他": []
 }
 ```
+2.use [develope.py](https://github.com/Ymkznn/Nuino-button/blob/main/develope.py) to set/delete button or change button's voice.  
+Here is the example:  
+create `example.py`  
+```
+import develope
 
-it will auto generate mp3 to [static/audios/](https://github.com/Ymkznn/Nuino-button/tree/main/static/audios).  
-
+develope.add_audio('category','button_name.mp3') #mp3 file name will be used on button
+develope.del_audio('category','button_name')
+develope.change_audio('category','button_name','new_audio.mp3') #it will not change button name
+```  
 6.Run [auto.py](https://github.com/Ymkznn/Nuino-button/blob/main/auto.py) again.  
 ![image](https://github.com/Ymkznn/Nuino-button/blob/main/readme_photo/step6.png)
 

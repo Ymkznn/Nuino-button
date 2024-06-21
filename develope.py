@@ -79,5 +79,3 @@ def change_audio(category:str,buttonname:str,filename:str):
         audio_file = file.read()
     with open('static/audios/{}'.format(button['num']),'wb') as file:
         file.write(audio_file)
-
-add_audio('大学/選手権','考えて行動大学')
