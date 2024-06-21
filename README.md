@@ -22,7 +22,7 @@ If you're using Vercel to build the website, you only need to deploy the entire 
 
 download this source code:[Nuino-button](https://github.com/Ymkznn/Nuino-button/archive/refs/heads/main.zip)  
 
-1.Modify all the data in [api/static/text/description.json](https://github.com/Ymkznn/Nuino-button/blob/main/api/static/text/description.json).  
+1.Modify all the data in [static/text/description.json](https://github.com/Ymkznn/Nuino-button/blob/main/description.json).  
 Here is the example:  
 ```
 {
@@ -53,7 +53,7 @@ Here is the example:
 }
 ```  
 
-2.Modify the categories in [api/static/text/data.json](https://github.com/Ymkznn/Nuino-button/blob/main/api/static/text/data.json).  
+2.Modify the categories in [static/text/data.json](https://github.com/Ymkznn/Nuino-button/blob/main/static/text/data.json).  
 Here is the example:  
 ```
 {
@@ -67,43 +67,9 @@ Here is the example:
 }
 ```
 
-3.Running [auto.py](https://github.com/Ymkznn/Nuino-button/blob/main/auto.py) will generate an empty website.(You can run [api/main.py](https://github.com/Ymkznn/Nuino-button/blob/main/api/main.py) to view the website in [127.0.0.1](http://127.0.0.1:5000/))  
-![image](https://github.com/Ymkznn/Nuino-button/blob/main/readme_photo/step3.png)
-
-4.Name the audio file as "category number-number.mp3" and place it in the [api/static/audios/](https://github.com/Ymkznn/Nuino-button/tree/main/api/static/audios).  
-Here is the example(If it's the first button in category 1):  
-```
-1-001.mp3
-```
-*The audio format must be mp3
-
-5.Fill in the category and button names in [auto.py](https://github.com/Ymkznn/Nuino-button/blob/main/auto.py).  
-```
-import add_json
-import generate
-
-category = 'かわいい'
-button_name = 'かわいい～えっち～'
-add_json.update_json_data(category, button_name)
-generate.generate()
-```  
-or you can:  
-```
-import add_json
-import generate
-
-category = 'かわいい'
-button_name = 'かわいい～えっち～'
-
-with open('かわいい～えっち～.mp3','rb') as file:
-    audio_file = file.read()
-
-add_json.update_json_data(category, button_name,audio_data=audio_file)
-generate.generate()
-```  
-it will auto generate mp3 to [api/static/audios/](https://github.com/Ymkznn/Nuino-button/tree/main/api/static/audios).  
+it will auto generate mp3 to [static/audios/](https://github.com/Ymkznn/Nuino-button/tree/main/static/audios).  
 
 6.Run [auto.py](https://github.com/Ymkznn/Nuino-button/blob/main/auto.py) again.  
 ![image](https://github.com/Ymkznn/Nuino-button/blob/main/readme_photo/step6.png)
 
-You can freely change the website's color scheme or form in [api/static/css/style.css.](https://github.com/Ymkznn/Nuino-button/blob/main/api/static/css/style.css)
+You can freely change the website's color scheme or form in [static/css/style.css.](https://github.com/Ymkznn/Nuino-button/blob/main/static/css/style.css)
