@@ -8,6 +8,7 @@
         "ja":"日本語",
         "zh_TW":"繁體中文"
     },
+    "search":"検索",
     "allow-volume-setting":true,
     "volume-setting":"音量",
     "voice-pause":"前の音声再生を停止",
