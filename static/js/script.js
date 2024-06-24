@@ -3,7 +3,8 @@ $(document).ready(function() {
     // post loading
     var group2 = $('.input-group-2');
     var dropdown = $('.dropdown');
-    if ($(window).width() < 768) {
+    
+    if ($(window).width() < 769) {
         group2.detach().insertAfter(dropdown);
     }else{
         dropdown.detach().insertAfter(group2);
@@ -11,7 +12,7 @@ $(document).ready(function() {
     
     // if screen width updated
     $(window).on('resize', function() {
-        if ($(window).width() < 768) {
+        if ($(window).width() < 769) {
             group2.detach().insertAfter(dropdown);
         }else{
             dropdown.detach().insertAfter(group2);
@@ -127,11 +128,11 @@ $(document).ready(function() {
     // collapse/expand category container on button
     $(".button-subdirectory").on('click', function() {
         $(this).siblings('.row').find('.cate-body').slideToggle();
-        var $span = $(this).find('.content'); // 找到按鈕内的 .content 元素
+        var $span = $(this).find('.content');
         if ($span.text() === '▲') {
-          $span.text('▼'); // 如果文本是▲，则改为▼
+          $span.text('▼'); // if text is ▲, change to ▼
         } else {
-          $span.text('▲'); // 否则改回▲
+          $span.text('▲');
         }
     });
 
