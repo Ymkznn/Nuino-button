@@ -51,23 +51,28 @@ label {
     margin-bottom: 5px;
     margin-top: 5px;
 }
-
+#container_area {
+    flex-grow: 1;
+    margin: 0;
+    padding-top: 10px;
+    justify-content: space-between;
+}
 .input-group-1{
     position: relative;
-    max-width: 60%;
+    max-width: 195px;
 }
 
 .input-group-2{
     max-height: 10%;
-    margin-right: 50px;
     position: relative;
-    max-width: 45%; /* Optional: Set max-width for the input group */
-    margin: 0;
+    max-width: 40%; /* Optional: Set max-width for the input group */
 }
 .dropdown{
+    position: relative;
     text-align: right;
-    max-width: 30%;
+    max-width: 8%;
 }
+
 .input-group-2 .form-control {
     color: #000;
     background-color: #fff;
@@ -208,11 +213,7 @@ input[type=range].styled-slider {
     border: none;
 }
 
-#container_area {
-    flex-grow: 1;
-    margin: 0;
-    padding-top: 10px;
-}
+
 #autopause_on {
     margin-right: 10px;
 }
