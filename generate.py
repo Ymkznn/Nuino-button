@@ -62,7 +62,7 @@ def generate():
                                         for site_id,site_info in description["links"].items():
                                             a(site_info[0],id=site_id, cls="nav-link", href=site_info[1],target="-blank")
                     
-                    with div(cls="col input-group input-group-2"):
+                    with div(cls="col-2 input-group input-group-2 mx-auto"):
                         with span(cls="input-group-text",id="search-icon"):
                             if Path("./static/img/search.png").is_file():
                                 img(src="./static/img/search.png",alt="Search Icon")
