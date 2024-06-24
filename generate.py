@@ -29,7 +29,7 @@ def generate():
         script(type="text/javascript", src="./static/js/script.js")
         with div(cls="main-app"):
             with div(cls="navbar navbar-dark fixed-top custom-navbar"):
-                with div(cls="container-fluid",id="navbar-container"):
+                with div(cls="container-fluid"):
                     with div(cls="col input-group input-group-1"):
                         with button(id="offcanvasNavbarbutton",cls="navbar-toggler", type="button", data_bs_toggle="offcanvas", data_bs_target="#offcanvasNavbar", aria_controls="offcanvasNavbar", aria_label="Toggle navigation"):
                             span (cls="navbar-toggler-icon")
@@ -62,7 +62,7 @@ def generate():
                                         for site_id,site_info in description["links"].items():
                                             a(site_info[0],id=site_id, cls="nav-link", href=site_info[1],target="-blank")
                     
-                    with div(cls="col-2 input-group input-group-2"):
+                    with div(cls="col input-group input-group-2"):
                         with span(cls="input-group-text",id="search-icon"):
                             if Path("./static/img/search.png").is_file():
                                 img(src="./static/img/search.png",alt="Search Icon")
@@ -78,7 +78,7 @@ def generate():
                             for lang_id,lang_name in description["lang"].items():
                                 with li():
                                     a(lang_name,id=lang_id, cls="dropdown-item lang-switch",data_lang=lang_id)
-                
+                    
             with div(cls="container-fluid",id="container_area"):
                 for category_tag,(category, buttons) in enumerate(data.items()):
                     with div():

@@ -70,7 +70,7 @@ label {
 .dropdown{
     position: relative;
     text-align: right;
-    max-width: 8%;
+    max-width: 10%;
 }
 
 .input-group-2 .form-control {
