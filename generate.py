@@ -18,6 +18,9 @@ def generate():
         meta(name="google-site-verification",content="fsRhq_lprbn64PdLt3miBwpUTYLT7Y2Je7UE-4ZI3r8")
         meta(name="description",content=description['description'])
         meta(name="viewport",content="width=device-width,initial-scale=1")
+        meta(http_equiv="PRAGMA",content="NO-CACHE")
+        meta(http_equiv="EXPIRES",content="0")
+        meta(http_equiv="CACHE-CONTROL",content="NO-CACHE")
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js")
         script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js")
@@ -29,7 +32,7 @@ def generate():
         script(type="text/javascript", src="./static/js/script.js")
         with div(cls="main-app"):
             with div(cls="navbar navbar-dark fixed-top custom-navbar"):
-                with div(cls="container-fluid"):
+                with div(cls="container-fluid",id="navbar-container"):
                     with div(cls="col input-group input-group-1"):
                         with button(id="offcanvasNavbarbutton",cls="navbar-toggler", type="button", data_bs_toggle="offcanvas", data_bs_target="#offcanvasNavbar", aria_controls="offcanvasNavbar", aria_label="Toggle navigation"):
                             span (cls="navbar-toggler-icon")
@@ -49,6 +52,7 @@ def generate():
                                         div(description["volume-setting"],cls="col",id="volume-setting")
                                         with div(cls="col volume-control"):
                                             input_(type="range",cls="styled-slider slider-progress",id="volumeRange",min="0",max="150",value="100")
+                                if description["allow-echo-effect"]:
                                     with div(cls="row",id="echo-container"):
                                         div(description["echo-effect"],cls="col",id="echo-effect")
                                         with div(cls="col echo-control"):
@@ -61,7 +65,7 @@ def generate():
                                         for site_id,site_info in description["links"].items():
                                             a(site_info[0],id=site_id, cls="nav-link", href=site_info[1],target="-blank")
                     
-                    with div(cls="col-2 input-group input-group-2 mx-auto"):
+                    with div(cls="col-2 input-group input-group-2"):
                         with span(cls="input-group-text",id="search-icon"):
                             if Path("./static/img/search.png").is_file():
                                 img(src="./static/img/search.png",alt="Search Icon")
@@ -77,7 +81,7 @@ def generate():
                             for lang_id,lang_name in description["lang"].items():
                                 with li():
                                     a(lang_name,id=lang_id, cls="dropdown-item lang-switch",data_lang=lang_id)
-                    
+                
             with div(cls="container-fluid",id="container_area"):
                 for category_tag,(category, buttons) in enumerate(data.items()):
                     with div():
