@@ -186,5 +186,3 @@ def init_lang_file(language=None,replace=False):
             init_data.update(original_data[lang_name+'.json'])
             print(init_data)
         __write_data__('lang',init_data,lang_name+'.json')
-
-init_lang_file('zh_TW',replace=True)
