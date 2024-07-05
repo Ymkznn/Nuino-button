@@ -4,20 +4,21 @@ $(document).ready(function() {
     var group2 = $('.input-group-2');
     var dropdown = $('.dropdown');
     
-    if ($(window).width() < 769) {
-        group2.detach().insertAfter(dropdown);
-    }else{
-        dropdown.detach().insertAfter(group2);
-    }
-    
-    // if screen width updated
-    $(window).on('resize', function() {
+    function rearrangeElements() {
         if ($(window).width() < 769) {
             group2.detach().insertAfter(dropdown);
-        }else{
+        } else {
             dropdown.detach().insertAfter(group2);
         }
-    })
+    }
+
+    rearrangeElements();
+    
+    // if screen width updated
+    var mql = window.matchMedia("(orientation: landscape)");
+    mql.addEventListener("change", function() {
+        rearrangeElements();
+    });
 
     // esc key's action
     $(document).on('keydown', function(event) {
@@ -160,12 +161,12 @@ $(document).ready(function() {
         var content = $(this).val();
         $("button").each(function() {
             if ($(this).attr('id') === 'offcanvasNavbarbutton'||$(this).hasClass('button-subdirectory')) {
-                return true; // 直接跳过当前循环，继续下一个按钮
+                return true; 
             }
             if ($(this).text().includes(content)) {
-                $(this).show(); // 显示符合条件的按钮
+                $(this).show(); 
             } else {
-                $(this).hide(); // 隐藏不符合条件的按钮
+                $(this).hide(); 
             }
         })
         $('#clear-text-button').show();
