@@ -70,7 +70,7 @@ def generate():
                                 span("🔍")
                         with div(cls="input-group-append"):
                             button("✕",cls="btn btn-outline-success",style="display: none;", type="button",id="clear-text-button")
-                        input_(type="text", cls="form-control", placeholder=description["search"], id="search")
+                        input_(type="text", cls="form-control", placeholder=description["search"], id="search",autocomplete="off")
 
                     with div(cls="col nav-item dropdown"):
                         a(description["default-lang"],id="default-lang", cls="nav-link navbar-brand dropdown-toggle", role="button", data_bs_toggle="dropdown", aria_expanded="false")
