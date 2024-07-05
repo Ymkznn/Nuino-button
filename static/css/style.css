@@ -32,6 +32,7 @@ label {
     position: sticky;
     z-index: 999;
 }
+
 .offcanvas-header,.offcanvas-body,.offcanvas-title{
     background-color: #4f3738;
 }
@@ -297,7 +298,7 @@ input[type=range].styled-slider.slider-progress:active::-webkit-slider-runnable-
         margin: 0;
     }
     .dropdown{
-        width: 40%;
+        max-width: 25%;
         text-align: right;
     }
     .cate-body{
