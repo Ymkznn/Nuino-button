@@ -79,9 +79,10 @@ create `example.py`
 ```
 import develope
 
-develope.add_audio('category','button_name.mp3')                    # create button, mp3 file name will be used on button (delete_mp3=True to delete mp3 file after create button)
-develope.del_audio('category','button_name')                        # delete button
-develope.change_audio('category','button_name','new_audio.mp3')     # change button's audio file, it will not change button name (delete_mp3=True to delete mp3 file after create button)
+develope.add_audio('category','button_name.mp3')                    # create button, mp3 file name will be used on button (delete_mp3=True to delete mp3 file after create button).
+develope.del_audio('category','button_name')                        # delete button.
+develope.change_audio('category','button_name','new_audio.mp3')     # change button's audio file, it will not change button name (delete_mp3=True to delete mp3 file after create button).
+init_lang_file()                                                    # initial translate files (language=None,replace=False) language=None for init all language.json, replace true to renew all content.
 
 # example
 develope.add_audio('category','button_name.mp3',delete_mp3=True) 
