@@ -148,7 +148,7 @@ def del_audio(category:str,filename:str):
 
 
 def change_audio(category:str,buttonname:str,filename:str,delete_mp3=False):
-    data = __read_data__()
+    data = __read_data__('data')
     button = __calc_filenum__(data,category,buttonname)
     filename = filename.split('.')[0]
     with open('temp_audio/{}.mp3'.format(filename),'rb') as file:
