@@ -52,6 +52,9 @@ Here is the example:
     "declaration":"このサイトはファン作品であり、公式とは関係ありません"
 }
 ```  
+"lang" can be added/remove like: "en":"english", so as "links","source".
+also can be empty.
+
 
 2.Modify the categories in [data.json](https://github.com/Ymkznn/Nuino-button/blob/main/data.json).  
 Here is the example:  
@@ -71,14 +74,19 @@ Here is the example:
 
 4.use [develope.py](https://github.com/Ymkznn/Nuino-button/blob/main/develope.py) to set/delete button or change button's voice.  
 Here is the example:  
+put your audio file into [](https://github.com/Ymkznn/Nuino-button/blob/main/develope.py)
 create `example.py`  
 ```
 import develope
 
-develope.add_audio('category','button_name.mp3') #mp3 file name will be used on button
-develope.del_audio('category','button_name')
-develope.change_audio('category','button_name','new_audio.mp3') #it will not change button name
+develope.add_audio('category','button_name.mp3')                    # create button, mp3 file name will be used on button (delete_mp3=True to delete mp3 file after create button)
+develope.del_audio('category','button_name')                        # delete button
+develope.change_audio('category','button_name','new_audio.mp3')     # change button's audio file, it will not change button name (delete_mp3=True to delete mp3 file after create button)
+
+# example
+develope.add_audio('category','button_name.mp3',delete_mp3=True) 
 ```  
 
 5.just F5 and see the change
+
 You can freely change the website's color scheme or form in [static/css/style.css.](https://github.com/Ymkznn/Nuino-button/blob/main/static/css/style.css)
