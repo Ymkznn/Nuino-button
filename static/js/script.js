@@ -157,41 +157,109 @@ $(document).ready(function() {
     });
 
     // real time search button
-    $('#search').on('input', function() {
+    $('#search').on('input', function(e) {
         var content = $(this).val();
-    
+        
         if (content === 'ミュート助からない' || content === 'ミュートたすからない') { 
-            $('#container_area').children().hide(); 
-            
-            if ($('#sneeze').length === 0) {
-                const sneezeContainer = $('<div>', {
-                    id: 'sneeze',
-                    class: 'new-container',
-                    css: { display: 'none' }  // 设置初始隐藏
-                });
-            
-                const button = $('<button>', {
-                    class: 'btn btn-danger play-audio',
-                    'data-audio': '0-000.mp3',
-                    id: '0-000',
-                    type: 'button'
-                });
-            
-                const span = $('<span>', {
-                    class: 'content',
-                    text: 'くしゃみ助かる'
-                });
-            
-                button.append(span);  // 将span加入button
-                sneezeContainer.append(button);  // 将button加入sneezeContainer
-                $('#container_area').append(sneezeContainer);  // 将sneezeContainer加入container_area
-            }
-            
+            // Hide other elements in container_area
             setTimeout(() => {
-                $('#sneeze').fadeIn();
-            }, 600);
+                $('#container_area').children().hide(); 
+                if ($('#sneeze').length === 0) {
+                    const FADE_DURATION = 200;
+                
+                    const sneezeContainer = $('<div>', {
+                        id: 'sneeze',
+                        class: 'new-container',
+                        css: { display: 'none' }  // Set initial to hidden
+                    });
+                
+                    const button = $('<button>', {
+                        class: 'btn btn-danger play-audio',
+                        'data-audio': '0-000.mp3',
+                        id: '0-000',
+                        type: 'button',
+                        css: {
+                            position: 'relative', // Set relative positioning for the button
+                            overflow: 'hidden'    // Ensure the content is contained within the button
+                        }
+                    });
+                
+                    // Create video element and set properties to fill the container with 20% opacity
+                    const video = $('<video>', {
+                        id: 'sneeze-video',
+                        src: '/static/videos/sneeze-video.mp4',  // Relative path to the video file
+                        autoplay: true,  // Autoplay video
+                        loop: false,     // Disable loop so we can control it manually
+                        css: {
+                            width: '100%',        // Video width fills the container
+                            height: '100%',       // Video height fills the container
+                            opacity: 0.2,         // Set opacity to 20%
+                            display: 'block',      // Ensure video is block-level
+                            pointerEvents: 'none',  // Hide player controls and allow button clicks
+                            objectFit: 'cover',      // Cover the container without distortion
+                        }
+                    });
+                
+                    // Create span and style it to stack on top of the video
+                    const span = $('<span>', {
+                        class: 'content',
+                        text: 'くしゃみ助かる',
+                        css: {
+                            position: 'absolute',      // Position the span absolutely
+                            top: '50%',                // Center vertically
+                            left: '50%',               // Center horizontally
+                            transform: 'translate(-50%, -50%)', // Adjust to center the span
+                            width: '100%',             // Make the span full width
+                            textAlign: 'center',       // Center text within the span
+                            color: 'white',            // Change text color to make it visible
+                            fontSize: '24px',          // Adjust font size as needed
+                            zIndex: 3                  // Ensure the span is above the video
+                        }
+                    });
+                
+                    // Append the span to the button (which is the parent)
+                    button.append(video);  // Add video directly to the button
+                    button.append(span);   // Add span on top of the video
+                    sneezeContainer.append(button);  // Add button to sneezeContainer
+                    $('#container_area').append(sneezeContainer);  // Add sneezeContainer to container_area
+                
+                    // Fade in the sneezeContainer and hide others
+                    sneezeContainer.fadeIn(FADE_DURATION); // Use FADE_DURATION for fade in
+                    
+                    // Set the video playback rate to 1.2x
+                    video[0].playbackRate = 1.2;
+        
+                    // Handle fade in and fade out on video end
+                    video.on('ended', function() {
+                        $(this).fadeOut(FADE_DURATION, function() {
+                            // Once the video fades out, reset it and set a timeout for delay
+                            setTimeout(function() {
+                                video[0].currentTime = 0; // Reset video to the start
+                                video.fadeIn(FADE_DURATION, function() {
+                                    // After fading in, play the video again
+                                    video[0].play();
+                                });
+                            }, FADE_DURATION); // 200 ms delay before restarting the video
+                        });
+                    });
+                
+                    // Start playing the video and handle initial fade-in
+                    video.on('loadeddata', function() {
+                        video[0].play(); // Start playing the video
+                        video.fadeIn(FADE_DURATION); // Fade in when video is loaded
+                    });    
+                    $('#sneeze').fadeIn();
+                } else {
+                    $('#sneeze').show();
+                }
+            }, 200);
             $('#clear-text-button').show();
         } else {
+            // Hide the sneeze if the input is changed
+            setTimeout(() => {
+                $('#sneeze').remove(); 
+                $('#container_area').children().fadeIn(); 
+            }, 200);
             $("button").each(function() {
                 if ($(this).attr('id') === 'offcanvasNavbarbutton' || $(this).hasClass('button-subdirectory')) {
                     return true;
@@ -209,15 +277,10 @@ $(document).ready(function() {
                 setTimeout(() => {
                     $('#container_area').children().fadeIn(); 
                 }, 200);
-                $('#sneeze').remove(); 
             }
-            
-            setTimeout(() => {
-                $('#container_area').children().fadeIn(); 
-            }, 200);
-            $('#sneeze').remove(); 
         }
     });
+    
     
     //search box's visual effect
     $('#search').on('focus', function() {
@@ -305,7 +368,7 @@ function createEchoEffect(audioCtx) {
     };
 }
 
-// set time limet to exec function
+// set time limit to exec function
 function throttle(func, delay) {
     let lastExecTime = 0;
     return function(...args) {
