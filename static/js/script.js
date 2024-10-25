@@ -160,11 +160,7 @@ $(document).ready(function() {
     $('#search').on('input', function() {
         var content = $(this).val();
     
-<<<<<<< HEAD
-        if (content === '' || content === 'ミュートたすからない') { 
-=======
         if (content === 'ミュート助からない' || content === 'ミュートたすからない') { 
->>>>>>> 60bd77542623e726a32c1a3f8d3e6e5be50b78fe
             $('#container_area').children().hide(); 
             
             if ($('#sneeze').length === 0) {
@@ -215,14 +211,11 @@ $(document).ready(function() {
                 }, 200);
                 $('#sneeze').remove(); 
             }
-<<<<<<< HEAD
             
             setTimeout(() => {
                 $('#container_area').children().fadeIn(); 
             }, 200);
             $('#sneeze').remove(); 
-=======
->>>>>>> 60bd77542623e726a32c1a3f8d3e6e5be50b78fe
         }
     });
     
