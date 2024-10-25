@@ -34,7 +34,7 @@ $(document).ready(function() {
     let audioCtx,gainNode,echoEffectNode;// create effect's node
     let source;
     let currentAudio = null; // now playing audio
-    $(".play-audio").click(function(){
+    $(document).on('click', '.play-audio', function(){
         //autopause check
         if ($("#flexCheckChecked").prop('checked')){
             if (currentAudio !=null){
@@ -74,7 +74,7 @@ $(document).ready(function() {
             const progress = (audio.currentTime / audio.duration) * 100;
             progressBar.css('width', progress + '%');
         }, interval);
-        
+
         currentAudio.play();
     });
 
@@ -159,29 +159,73 @@ $(document).ready(function() {
     // real time search button
     $('#search').on('input', function() {
         var content = $(this).val();
-        $("button").each(function() {
-            if ($(this).attr('id') === 'offcanvasNavbarbutton'||$(this).hasClass('button-subdirectory')) {
-                return true; 
+    
+        if (content === '' || content === 'ミュートたすからない') { 
+            $('#container_area').children().hide(); 
+            
+            if ($('#sneeze').length === 0) {
+                const sneezeContainer = $('<div>', {
+                    id: 'sneeze',
+                    class: 'new-container',
+                    css: { display: 'none' }  // 设置初始隐藏
+                });
+            
+                const button = $('<button>', {
+                    class: 'btn btn-danger play-audio',
+                    'data-audio': '0-000.mp3',
+                    id: '0-000',
+                    type: 'button'
+                });
+            
+                const span = $('<span>', {
+                    class: 'content',
+                    text: 'くしゃみ助かる'
+                });
+            
+                button.append(span);  // 将span加入button
+                sneezeContainer.append(button);  // 将button加入sneezeContainer
+                $('#container_area').append(sneezeContainer);  // 将sneezeContainer加入container_area
             }
-            if ($(this).text().includes(content)) {
-                $(this).show(); 
+            
+            setTimeout(() => {
+                $('#sneeze').fadeIn();
+            }, 600);
+            $('#clear-text-button').show();
+        } else {
+            $("button").each(function() {
+                if ($(this).attr('id') === 'offcanvasNavbarbutton' || $(this).hasClass('button-subdirectory')) {
+                    return true;
+                }
+                if ($(this).text().includes(content)) {
+                    $(this).show(); 
+                } else {
+                    $(this).hide(); 
+                }
+            });
+            if (content) {
+                $('#clear-text-button').show(); 
             } else {
-                $(this).hide(); 
+                $('#clear-text-button').hide(); 
+                setTimeout(() => {
+                    $('#container_area').children().fadeIn(); 
+                }, 200);
+                $('#sneeze').remove(); 
             }
-        })
-        $('#clear-text-button').show();
-        if (!content){
-            $('#clear-text-button').hide();
+            
+            setTimeout(() => {
+                $('#container_area').children().fadeIn(); 
+            }, 200);
+            $('#sneeze').remove(); 
         }
     });
-
+    
     //search box's visual effect
     $('#search').on('focus', function() {
         $("#search-icon").css('border-color', '#6eb1de');
         $("#search-icon").css('background-color', '#fafafa');
     })
     $('#search').on('blur', function() {
-        $("#search-icon").css('border-color', '#fff'); // 移除自定义类名恢复原始样式
+        $("#search-icon").css('border-color', '#fff');
         $("#search-icon").css('background-color', '#fff');
     });
 });

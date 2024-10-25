@@ -62,6 +62,7 @@ def __get_keys__(d):
             for item in items.keys():
                 keys.update({'{}-{:03d}'.format(index+1,item_index+1):item})
     return keys
+
 def add_audio(category:str,filename:str,note:str=None,delete_mp3=False):
     data = __read_data__('data')
     trans = __read_data__('lang')
