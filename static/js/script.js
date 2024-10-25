@@ -44,8 +44,19 @@ $(document).ready(function() {
         }else{
             $(this).find('.progress').remove();
         }
+        // 取得當前按鈕的 ID
+        const buttonId = $(this).attr('id');
+
         // set audio node
-        let audioFileName = $(this).data('audio');
+        let audioFileName;
+        if (buttonId === '0-000') {
+            // 隨機選擇音訊檔案
+            const audioFiles = ['0-000.mp3', '0-001.mp3']; // 音訊檔案陣列
+            audioFileName = audioFiles[Math.floor(Math.random() * audioFiles.length)]; // 隨機選擇檔案
+        } else {
+            // 如果不是 0-000，使用該按鈕的 data-audio 屬性
+            audioFileName = $(this).data('audio');
+        }
         let encodedFileName = encodeURIComponent(audioFileName);
         let audioFile = '/static/audios/' + encodedFileName;
         let audio = new Audio(audioFile);
