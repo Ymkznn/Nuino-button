@@ -187,7 +187,7 @@ $(document).ready(function() {
                     // Create video element and set properties to fill the container with 20% opacity
                     const video = $('<video>', {
                         id: 'sneeze-video',
-                        src: '/static/videos/sneeze-video.mp4',  // Relative path to the video file
+                        src: '/static/videos/no.mp4',  // Relative path to the video file
                         autoplay: true,  // Autoplay video
                         loop: false,     // Disable loop so we can control it manually
                         css: {
